@@ -950,11 +950,9 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 - (void)tilePages {
 	// Calculate which pages should be visible
-	// Ignore padding as paging bounces encroach on that
-	// and lead to false page loads
 	CGRect visibleBounds = _pagingScrollView.bounds;
-	NSInteger iFirstIndex = (NSInteger) floorf((CGRectGetMinX(visibleBounds)+PADDING*2) / CGRectGetWidth(visibleBounds));
-	NSInteger iLastIndex  = (NSInteger) floorf((CGRectGetMaxX(visibleBounds)-PADDING*2-1) / CGRectGetWidth(visibleBounds));
+	NSInteger iFirstIndex = (NSInteger) floorf(CGRectGetMinX(visibleBounds) / CGRectGetWidth(visibleBounds));
+	NSInteger iLastIndex  = (NSInteger) floorf(CGRectGetMaxX(visibleBounds) / CGRectGetWidth(visibleBounds));
     if (iFirstIndex < 0) iFirstIndex = 0;
     if (iFirstIndex > [self numberOfPhotos] - 1) iFirstIndex = [self numberOfPhotos] - 1;
     if (iLastIndex < 0) iLastIndex = 0;
